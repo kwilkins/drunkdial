@@ -68,6 +68,8 @@ namespace DDRequest
                 return;
             }
 
+            #if WINDOWS_PHONE_APP
+
             var store = await ContactManager.RequestStoreAsync();
             DataSource.Clear();
             foreach (var s in contactIdList.Where(s => s != null && s.Trim() != String.Empty))
@@ -85,6 +87,9 @@ namespace DDRequest
                     Phone = contact.Phones.First(c => c.Kind == ContactPhoneKind.Mobile).Number
                 });
             }
+
+            #endif
+
         }
 
         public void SaveContacts()
